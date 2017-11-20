@@ -5,7 +5,6 @@ import Footer from '../../components/footer/Footer';
 import bundles from '../../assets/home-courses-bundles.jpg';
 import books from '../../assets/home-books-by-carol.jpg';
 import giftCards from '../../assets/home-gift-cards.jpg';
-import guaranteeIMG from '../../assets/bg.png'
 import arrow from '../../assets/arrow_totop.png';
 import './home.css';
 
@@ -106,14 +105,14 @@ class Home extends Component {
                         </div>
                     </section>
 
-                    <section className='home-love-guarantee' style={{width: this.state.width - this.state.scrollBar - 1 + 'px'}}>
+                    <section className='home-love-guarantee' style={{width: this.state.width - this.state.scrollBar + 'px'}}>
                         <hr/>
                         <div className='home-love-guarantee-img' />
                     </section>
                 </div>
 
                 <div className='home-arrow-to-top' id='scroll-arrow' onClick={() => this.onArrow()}>
-                    <img src={arrow} />
+                    <img src={arrow} alt='' />
                 </div>
 
                 <Footer />
