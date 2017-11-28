@@ -13,7 +13,7 @@ class Home extends Component {
         super();
 
         this.state = {
-            
+            guaranteeOpen: 'false'
         }
     }
 
@@ -67,6 +67,21 @@ class Home extends Component {
         window.scrollTo( 0, 0 )
     }
 
+    onGuaranteeClick() {
+        if( this.state.guaranteeOpen === 'false' ) {
+            this.setState({
+                guaranteeOpen: 'true'
+            })
+        }
+        console.log( this.state.guaranteeOpen )
+    }
+
+    onCloseGuarantee() {
+        this.setState({
+            guaranteeOpen: 'false'
+        })
+    }
+
     render() {
         return(
             <div className='home-body'>
@@ -107,7 +122,13 @@ class Home extends Component {
 
                     <section className='home-love-guarantee' style={{width: this.state.width - this.state.scrollBar + 'px'}}>
                         <hr/>
+                        <div className='home-love-overlay' onClick={() => this.onGuaranteeClick()} >
+                            
+                        </div>
                         <div className='home-love-guarantee-img' />
+                    </section>
+                    <section className='home-love-drop' drop-open={this.state.guaranteeOpen} style={{width: this.state.width - this.state.scrollBar + 'px'}}>
+                    
                     </section>
                 </div>
 
