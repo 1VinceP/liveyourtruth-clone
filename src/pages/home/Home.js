@@ -74,6 +74,7 @@ class Home extends Component {
             })
         }
         console.log( this.state.guaranteeOpen )
+        
     }
 
     onCloseGuarantee() {
