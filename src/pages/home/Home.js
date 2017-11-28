@@ -13,7 +13,7 @@ class Home extends Component {
         super();
 
         this.state = {
-            guaranteeOpen: 'false'
+            guaranteeOpen: 'none'
         }
     }
 
@@ -68,18 +68,18 @@ class Home extends Component {
     }
 
     onGuaranteeClick() {
-        if( this.state.guaranteeOpen === 'false' ) {
+        if( this.state.guaranteeOpen === 'none' ) {
             this.setState({
-                guaranteeOpen: 'true'
+                guaranteeOpen: 'flex'
             })
         }
         console.log( this.state.guaranteeOpen )
-        
+
     }
 
     onCloseGuarantee() {
         this.setState({
-            guaranteeOpen: 'false'
+            guaranteeOpen: 'none'
         })
     }
 
@@ -128,8 +128,12 @@ class Home extends Component {
                         </div>
                         <div className='home-love-guarantee-img' />
                     </section>
-                    <section className='home-love-drop' drop-open={this.state.guaranteeOpen} style={{width: this.state.width - this.state.scrollBar + 'px'}}>
-                    
+                    <section className='home-love-drop' style={{width: this.state.width - this.state.scrollBar - 1 + 'px', display: this.state.guaranteeOpen}}>
+                        
+
+                        <div className='love-drop-bottom' >
+                            {/* <div className='love-drop-close' onClick={() => this.onCloseGuarantee()}>Close</div> */}
+                        </div>
                     </section>
                 </div>
 
