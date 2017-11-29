@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import list from './list';
 import './headerDrop.css';
 
 class HeaderDrop extends Component {
@@ -12,48 +13,63 @@ class HeaderDrop extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
         document.getElementById('drop-main').style.borderTop = `3px solid ${this.props.theme}`;
-        if( this.props.theme === '#FF416D' ) {
-            this.setState({
-                tType: 'Cute',
-                secondary: '#FF587F',
-                tertiary: '#FFD4DE'
-            })
+        document.getElementById('links').style.color = this.props.third
+
+        for( let i = 0; i < 5; i++ ) {
+            document.getElementsByClassName('headrop-topic-title')[i].style.color = this.props.third
         }
-        else if( this.props.theme === '#DF8FA9' ) {
-            this.setState({
-                tType: 'Soft'
-            })
+        for( let i = 0; i < 3; i++ ) {
+            document.getElementsByClassName('headrop-alerts-button')[i].style.border = `2px solid ${this.props.second}`
+            document.getElementsByClassName('headrop-alerts-button')[i].style.color = this.props.third
         }
-        else if( this.props.theme === '#A92D3F' ) {
-            this.setState({
-                tType: 'Hot'
-            })
-        }
-        else if( this.props.theme === '#DCDCDC' ) {
-            this.setState({
-                tType: 'Exact'
-            })
-        }
-        document.getElementById('eins').style.color = this.state.secondary;
-        document.getElementById('eins').style.border = `6px solid ${this.state.tertiary}`;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        document.getElementById('drop-main').style.borderTop = `3px solid ${nextProps.theme}`;
+        document.getElementById('links').style.color = nextProps.third
         
-        // document.getElementsByClassName('headrop-alerts-button').style.color = this.state.secondary;
-        // document.getElementsByClassName('headrop-alerts-button').style.border = `6px solid ${this.state.tertiary}`;
+        for( let i = 0; i < 5; i++ ) {
+            document.getElementsByClassName('headrop-topic-title')[i].style.color = nextProps.third
+        }
+        for( let i = 0; i < 3; i++ ) {
+            document.getElementsByClassName('headrop-alerts-button')[i].style.border = `2px solid ${nextProps.second}`
+            document.getElementsByClassName('headrop-alerts-button')[i].style.color = nextProps.third
+        }
+        
     }
     
     render() {
-        console.log( this.props.theme )
-        console.log( this.state.secondary, this.state.tertiary )
+        
+        let mappedList = list.map( ( topic, i ) => {
+            return (
+                <div className='headrop-topic-container' key={i}>
+                    <div className='headrop-topic-title'>{topic.title}</div>
+                    {topic.items.map( ( items, i ) => {
+                        return ( <div key={i}>{items.items}</div> )
+                    } )}
+                </div>
+            )
+        } )
+
         return (
-            <div className='headrop-body' id='drop-main'>
+            <div className='headrop-body' id='drop-main' onMouseEnter={() => this.props.hover()} >
                 <div className='headrop-content-box'>
                     <section className='headrop-alerts' >
                         <div className='headrop-alerts-button' id='eins'>New Arrivals</div>
                         <div className='headrop-alerts-button'>Basic Essentials</div>
                         <div className='headrop-alerts-button'>Sale</div>
                         <div className='headrop-new-outfits'>New Outfits</div>
+                    </section>
+                    <section className='headrop-list-container'>
+                        {mappedList}
+                    </section>
+                    <section className='headrop-extra-links' id='links'>
+                        <div>BOOKS</div>
+                        <div>COURSES</div>
+                        <div>GIFT CARDS</div>
+                        <div>SALE</div>
                     </section>
                 </div>
             </div>

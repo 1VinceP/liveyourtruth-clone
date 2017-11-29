@@ -9,27 +9,49 @@ class Header extends Component {
 
         this.state = {
             theme: '',
-            display: ''
+            second: '',
+            third: '',
+            display: '',
+            hover: ''
         }
+
+        this.isHover = this.isHover.bind(this);
+        this.isNotHover = this.isNotHover.bind(this);
     }
 
     componentDidMount() {
         this.setState({
             theme: 'black',
-            display: false
+            display: false,
+            hover: false
         })
     }
 
-    handleEnter( theme ) {
+    handleEnter( theme, second, third ) {
         this.setState({
             theme,
-            display: true
+            second,
+            third,
+            display: true,
+            hover: true
         })
     }
 
     handleLeave(display) {
         this.setState({
-            display: false
+            hover: false
+        })
+    }
+
+    isHover() {
+        this.setState({
+            hover: true
+        })
+    }
+
+    isNotHover() {
+        this.setState({
+            hover: false
         })
     }
 
@@ -60,15 +82,19 @@ class Header extends Component {
                             <button className='home-checkout-button'>Checkout</button>
                         </section>
                         <section className='h-h-r-bottom'>
-                            <div className='h-h-r-b-div h-one' onMouseEnter={() => this.handleEnter('#FF416D') } onMouseLeave={() => this.handleLeave() }>TYPE ONE</div>
-                            <div className='h-h-r-b-div h-two' onMouseEnter={() => this.handleEnter('#DF8FA9') } onMouseLeave={() => this.handleLeave() }>TYPE TWO</div>
-                            <div className='h-h-r-b-div h-three' onMouseEnter={() => this.handleEnter('#A92D3F') } onMouseLeave={() => this.handleLeave() }>TYPE THREE</div>
-                            <div className='h-h-r-b-div h-four' onMouseEnter={() => this.handleEnter('#DCDCDC') } onMouseLeave={() => this.handleLeave() }>TYPE FOUR</div>
+                            <div className='h-h-r-b-div h-one' onMouseEnter={() => this.handleEnter('#FF416D', '#FFD4DE', '#FF587F') } onMouseLeave={() => this.handleLeave() }>TYPE ONE</div>
+                            <div className='h-h-r-b-div h-two' onMouseEnter={() => this.handleEnter('#DF8FA9', '#F6E7EA', '#DA8291') } onMouseLeave={() => this.handleLeave() }>TYPE TWO</div>
+                            <div className='h-h-r-b-div h-three' onMouseEnter={() => this.handleEnter('#A92D3F', '#FFD9DF', '#D33D55') } onMouseLeave={() => this.handleLeave() }>TYPE THREE</div>
+                            <div className='h-h-r-b-div h-four' onMouseEnter={() => this.handleEnter('#DCDCDC', '#E6E6E6', '#000000' ) } onMouseLeave={() => this.handleLeave() }>TYPE FOUR</div>
                             <input placeholder='Search' />
                         </section>
                     </section>
-                    { this.state.display
-                        ? <HeadDrop theme={this.state.theme} />
+                    { this.state.hover
+                        ? <HeadDrop theme={this.state.theme}
+                                    second={this.state.second}
+                                    third={this.state.third}
+                                    hover={this.isHover}
+                                    notHover={this.isNotHover} />
                         : null
                     }
                     
