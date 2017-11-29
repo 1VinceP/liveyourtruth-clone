@@ -6,6 +6,7 @@ import bundles from '../../assets/home-courses-bundles.jpg';
 import books from '../../assets/home-books-by-carol.jpg';
 import giftCards from '../../assets/home-gift-cards.jpg';
 import arrow from '../../assets/arrow_totop.png';
+import content from '../../assets/love-drop-text.PNG';
 import './home.css';
 
 class Home extends Component {
@@ -129,10 +130,11 @@ class Home extends Component {
                         <div className='home-love-guarantee-img' />
                     </section>
                     <section className='home-love-drop' style={{width: this.state.width - this.state.scrollBar - 1 + 'px', display: this.state.guaranteeOpen}}>
-                        
-
+                        <div className='love-drop-content' >
+                            <img src={content} alt='' />
+                        </div>
                         <div className='love-drop-bottom' >
-                            {/* <div className='love-drop-close' onClick={() => this.onCloseGuarantee()}>Close</div> */}
+                            <div className='love-drop-close' onClick={() => this.onCloseGuarantee()}>Close</div>
                         </div>
                     </section>
                 </div>
