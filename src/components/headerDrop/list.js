@@ -2,7 +2,6 @@ module.exports = [
     {
         title: 'CLOTHING',
         items: [
-            '-T\'s',
             'Tops',
             'Bottoms',
             'Sweaters',
