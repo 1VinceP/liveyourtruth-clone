@@ -64,7 +64,11 @@ class Header extends Component {
             <div className='header-body'>
             <header className='home-header'>
                     <section className='home-header-left'>
-                        <img src='https://i0.wp.com/shop.liveyourtruth.com/media/wysiwyg/shoppermod/logo-default.png' alt='logo' className='home-logo'/>
+                        <a href='https://shop.liveyourtruth.com/?___store=default' target='_blank'><img src='https://i0.wp.com/shop.liveyourtruth.com/media/wysiwyg/shoppermod/logo-default.png' alt='logo' className='home-logo'/></a>
+                        { !this.state.hover
+                            ? <div className='header-link-to-real'>Click the logo above to see the real website and all the neat stuff they have to offer!</div>
+                            : null
+                        }
                     </section>
                     <section className='home-header-right'>
                         <section className='h-h-r-top'>
