@@ -7,9 +7,7 @@ class HeaderDrop extends Component {
         super(props);
 
         this.state = {
-            tType: '',
-            secondary: '',
-            tertiary: ''
+            tType: ''
         }
     }
 
@@ -24,6 +22,8 @@ class HeaderDrop extends Component {
             document.getElementsByClassName('headrop-alerts-button')[i].style.border = `2px solid ${this.props.second}`
             document.getElementsByClassName('headrop-alerts-button')[i].style.color = this.props.third
         }
+
+        this.listSplitter()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -39,6 +39,16 @@ class HeaderDrop extends Component {
         }
         
     }
+
+    listSplitter() {
+        let itemList = []
+
+        for( let i = 0; i < list.length; i++ ) {
+            itemList.push(list[i].items)
+        }
+
+        console.log( itemList )
+    }
     
     render() {
         
@@ -46,9 +56,10 @@ class HeaderDrop extends Component {
             return (
                 <div className='headrop-topic-container' key={i}>
                     <div className='headrop-topic-title'>{topic.title}</div>
-                    {topic.items.map( ( items, i ) => {
+                    <div>{topic.items}</div>
+                    {/* {topic.items.map( ( items, i ) => {
                         return ( <div key={i}>{items.items}</div> )
-                    } )}
+                    } )} */}
                 </div>
             )
         } )
